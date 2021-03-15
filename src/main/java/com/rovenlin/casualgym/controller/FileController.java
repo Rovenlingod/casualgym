@@ -26,7 +26,7 @@ public class FileController {
         return ResponseEntity.status(HttpStatus.CREATED).body(storageService.store(file));
     }
 
-    @GetMapping("/{filename}")
+    @GetMapping(path = "/{filename}", produces = "video/mp4")
     public ResponseEntity<Resource> downloadFile(@PathVariable String filename) {
 
         Resource resource = storageService.loadAsResource(filename);
