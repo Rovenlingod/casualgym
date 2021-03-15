@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -26,7 +27,7 @@ public class FileController {
         return ResponseEntity.status(HttpStatus.CREATED).body(storageService.store(file));
     }
 
-    @GetMapping(path = "/{filename}", produces = "video/mp4")
+    @GetMapping(path = "/{filename}", produces = MediaType.IMAGE_GIF_VALUE)
     public ResponseEntity<Resource> downloadFile(@PathVariable String filename) {
 
         Resource resource = storageService.loadAsResource(filename);
