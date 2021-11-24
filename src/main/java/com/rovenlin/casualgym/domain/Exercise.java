@@ -22,6 +22,12 @@ public class Exercise {
     @Column(name = "gif_name")
     private String gifName;
 
+    @Column(name = "is_public")
+    private Boolean isPublic;
+
+    @Column(name = "countdown")
+    private Long countdownInSeconds;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User creator;

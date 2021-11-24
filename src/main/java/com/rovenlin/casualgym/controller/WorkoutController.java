@@ -23,4 +23,10 @@ public class WorkoutController {
     public ResponseEntity createWorkout(@RequestBody WorkoutDTO workoutDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(workoutService.createWorkout(workoutDTO));
     }
+
+    @GetMapping(path = "/{id}")
+    public ResponseEntity findWorkoutById(@PathVariable Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(workoutService.findWorkoutById(id));
+    }
+
 }

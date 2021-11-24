@@ -21,7 +21,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDTO registerUser(UserDTO userDTO) {
-        User registeredUser = userRepository.save(userMapper.dtoToUser(userDTO));
+        User user = userMapper.dtoToUser(userDTO);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        User registeredUser = userRepository.save(user);
         return userMapper.userToDTO(registeredUser);
+    }
+
+    @Override
+    public User findByLogin(String login) {
+        return userRepository.findByLogin(login);
     }
 }

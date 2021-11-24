@@ -29,4 +29,9 @@ public class WorkoutServiceImpl implements WorkoutService {
         Workout createdWorkout = workoutRepository.save(workoutEntity);
         return workoutMapper.toDTO(createdWorkout);
     }
+
+    @Override
+    public WorkoutDTO findWorkoutById(Long id) {
+        return workoutMapper.toDTO(workoutRepository.findByWorkoutId(id));
+    }
 }

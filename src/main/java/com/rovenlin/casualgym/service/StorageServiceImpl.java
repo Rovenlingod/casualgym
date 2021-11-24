@@ -53,7 +53,7 @@ public class StorageServiceImpl implements StorageService {
             throw new StorageException("Failed to store file " + filename, e);
         }
         String uri = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("/download/")
+                .path("/")
                 .path(filename)
                 .toUriString();
         return new FileResponseDTO(filename, uri, file.getContentType(), file.getSize());

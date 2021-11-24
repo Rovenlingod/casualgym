@@ -1,6 +1,8 @@
 package com.rovenlin.casualgym.exceptions;
 
+import com.rovenlin.casualgym.dtos.ExceptionResponseDTO;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -25,4 +27,23 @@ public class GlobalExceptionHandler {
         return errors;
     }
 
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(StorageException.class)
+    public ExceptionResponseDTO handleStorageExceptions(
+            StorageException ex) {
+        ExceptionResponseDTO responseDTO = new ExceptionResponseDTO();
+        responseDTO.setExceptionName(ex.getClass().getSimpleName());
+        responseDTO.setMessage(ex.getMessage());
+        return responseDTO;
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ExceptionResponseDTO handleIllegalArgumentException(
+            IllegalArgumentException ex) {
+        ExceptionResponseDTO responseDTO = new ExceptionResponseDTO();
+        responseDTO.setExceptionName(ex.getClass().getSimpleName());
+        responseDTO.setMessage(ex.getMessage());
+        return responseDTO;
+    }
 }
